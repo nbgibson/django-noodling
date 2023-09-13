@@ -1,12 +1,22 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title></title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    </head>
-    <body>
-        <h1>Benis!</h1>
-        <p>fug :DDDDDDDDDDDDDDDDDDDDDD</p>
-    </body>
-</html>
+{% extends 'projects/base.html' %}
+{% load static %}
+
+{% block content %}
+        <div class="container">
+            <h1>Projects</h1>
+            <div class="row">
+            {% for project in projects %}
+                <div class="col-md-4">
+                    <div class="card-mb-2">
+                        <img class="card-img-top" src="{% static project.image %}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ project.title }}</h5>
+                            <p class="card-text">{{ project.description }}</p>
+                            <a href="{% url 'projects:project_detail' project.pk %}" class="btn btn-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+{% endblock %}
